@@ -6,7 +6,7 @@ use Flight;
 
 class playUp {
 
-    public static function reviewscheck($package) {
+    public static function reviewscheck($package,$lang) {
 
         header('Content-Type: application/json; charset=utf-8');
         $header [] = "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
@@ -22,7 +22,7 @@ class playUp {
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "reviewType=0&pageNum=0&id=".$package."&reviewSortOrder=0&token=1&xhr=1&hl=tr");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "reviewType=0&pageNum=0&id=".$package."&reviewSortOrder=0&token=1&xhr=1&hl=".$lang);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $return = curl_exec($ch);
         curl_close($ch);
@@ -65,7 +65,7 @@ class playUp {
 
 	}
 
-    public static function packagecheck($package) {
+    public static function packagecheck($package,$lang) {
 
         header('Content-Type: application/json; charset=utf-8');
         $header [] = "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
@@ -74,7 +74,7 @@ class playUp {
         $header [] = "Pragma: no-cache";
         $header [] = "Referer: https://play.google.com/store/apps/details?id=".$package."&authuser=0&hl=tr";
         $user_agent='User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0';
-        $ch = curl_init("https://play.google.com/store/apps/details?id=".$package."&authuser=0&hl=tr");
+        $ch = curl_init("https://play.google.com/store/apps/details?id=".$package."&authuser=0&hl=".$lang);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header );
         curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
